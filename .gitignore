@@ -1,0 +1,64 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+**/local.properties
+*.jks
+*.keystore
+*.p12
+*.pem
+*.key
+credentials*.json
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+
+# Android / Gradle (keep wrapper)
+.gradle/
+**/.gradle/
+**/build/
+captures/
+*.apk
+*.aab
+*.hprof
+.kotlin/
+
+# Editors / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.swp
+
+# Private assets, database and outputs
+storage/
+uploads/
+exports/
+backups/
+logs/
+*.log
+*.sqlite
+*.sqlite3
+data/raw/
+data/private/
+.cache/
+.ipynb_checkpoints/
+tmp/
+
+# Web dependencies and generated files
+node_modules/
+**/node_modules/
+**/dist/
+coverage/
+playwright-report/
+test-results/
+*.tsbuildinfo
