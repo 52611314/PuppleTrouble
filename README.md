@@ -1,56 +1,48 @@
 # PuppleTrouble · 玩犊紫
 
-以颜色为核心的 AI 辅助设计应用。帮助普通用户发现颜色、理解作品中的配色关系，并将其应用到自己的页面。
+以颜色为核心的 AI 辅助设计应用，帮助普通用户发现颜色、理解作品中的配色关系，并应用到自己的页面。
 
-**当前状态：产品与工程文档基线，尚无可运行的 Web、Android 应用或业务 API。** 本仓库中的环境样例只启动开发数据库，不应据此认为后端已实现。
+**当前已建立可运行的后端、Web、Android 工程及 PostgreSQL 初始迁移。** 现阶段功能为运行检查和两端连接检查首页；取色、作品、模板编辑、AI 调整、保存与导出等业务尚未实现，相关空文件仅作开发位置预留。
 
-**开始修改前先阅读 [HANDOFF 工作交接](docs/HANDOFF.md)，修改后更新交接记录并一同提交。**
+## 启动入口
+
+首次安装工具、生成配置、安装依赖、迁移及各终端的日常命令见[项目启动](docs/项目启动.md)。环境配置由团队自行完成本机设置，不按成员分配。
+
+1. 根目录执行 `scripts/setup-local.ps1`，生成本机配置。
+2. Python 3.12 创建 .venv，安装 backend/requirements.lock.txt；frontend 执行 npm ci。
+3. 启动 Compose 的 db 并执行 Alembic 迁移，再启动后端。
+4. frontend 执行 npm run dev；Android Studio 打开 android，或使用 Gradle Wrapper 构建安装。
+
+Web：http://127.0.0.1:5173；API 文档：http://127.0.0.1:8000/docs；数据库仅本机 5432。详细步骤、模拟器／真机地址和验证范围以启动文档为准。
 
 ## 文档入口
 
 | 文档 | 内容 |
 |---|---|
-| [HANDOFF 工作交接](docs/HANDOFF.md) | 当前真实状态、协作约定、验证及下一接手任务 |
 | [项目文档](docs/项目文档.md) | 产品定位、颜色核心功能、AI 职责与首版边界 |
-| [项目开发计划](docs/项目开发计划.md) | 4 人、30 天，三天一周期；2026-11-15 开始，前 21 天完成基础版，12-14 交付 |
-| [分工安排](docs/分工安排.md) | 四人职责、模块归属、评审和交接 |
-| [接口文档](docs/接口文档.md) | v0.1 拟定 REST API、数据模型、异步任务与版本冲突 |
-| [技术栈说明](docs/技术栈说明.md) | React Web、Android 移动端、Python 服务、色彩与 AI |
-| [环境配置说明](docs/环境配置说明.md) | 前端、后端、数据库、算法与 AI、移动端配置分册 |
-| [项目协作](docs/项目协作.md) | 中文提交描述、HANDOFF、拉取同步、分支、PR 与验证 |
-| [项目启动](docs/项目启动.md) | 当前可启动范围、完整启动顺序、入口与排障 |
+| [项目开发计划](docs/项目开发计划.md) | 5 个六天 Sprint，分前／后三天；D21 完成基础版，D30 交付 |
+| [分工安排](docs/分工安排.md) | A Web 兼架构框架，B 后端数据库，C 后端算法，D Android 兼六天联合测试 |
+| [架构设计](docs/架构设计.md) | 分层、两端边界、算法／模型／业务与实际实现范围 |
+| [数据库设计](docs/数据库设计.md) | 已有 users 迁移、目标实体、事务约束与删除策略 |
+| [功能对应的模块](docs/功能对应的模块.md) | 功能到 Web／API／后端／Android 文件的映射和真实状态 |
+| [接口文档](docs/接口文档.md) | 已实现运行检查与待开发业务契约 |
+| [技术栈说明](docs/技术栈说明.md) | 实际工具链、固定依赖与后续选型 |
+| [环境配置说明](docs/环境配置说明.md) | 前端、后端、数据库、算法与 AI、移动端分册 |
+| [项目协作](docs/项目协作.md) | 拉取同步、任务分支、中文提交与交接规则 |
+| [项目启动](docs/项目启动.md) | 首次准备、日常命令、检查、停止和排障 |
+| [HANDOFF](docs/HANDOFF.md) | 按当前要求留空，现阶段暂不填写 |
 
-## 技术路线
-
-- Web 前端：React、TypeScript、Vite、Tailwind CSS、Konva、Zustand、TanStack Query。
-- Android 移动端：Kotlin、Jetpack Compose、Material 3、Navigation Compose、ViewModel/StateFlow、Retrofit/OkHttp、Coil、Room。
-- 服务端：Python 3.12、FastAPI、Pydantic、SQLAlchemy、Alembic、PostgreSQL 16。
-- 颜色计算：Pillow、OpenCV、NumPy、colour-science；多模态模型承担语义理解和解释，不代替准确取色。
-- AI：通过服务端接入千问多模态 API；模型可替换，密钥不进入安装包。
-
-## 当前可用的环境样例
-
-复制 `.env.example` 为 `.env`，填写本地开发配置后执行 `docker compose --env-file .env -f compose.dev.yaml up -d db`，只启动数据库。其余运行说明见环境配置文档。
-
-四人配置：A Web 前端兼架构与后端接口框架，B 后端兼数据库，C 后端兼算法，D Android 移动端兼每六天一次的联合测试组织。
-
-计划代码目录为 `frontend/`、`android/`、`backend/`、`data/catalog/` 和 `tests/`，尚未生成应用脚手架。小规模经过授权的作品元数据可版本管理；私人上传、缓存和大型素材留在存储中。
-
-仓库尚未选择源码开源许可证；第三方模型、库和图像各自遵循原许可。
-
-## 目录组织
+## 目录
 
 ```text
 PuppleTrouble/
-├── README.md
-├── .gitignore / .gitattributes / .editorconfig
-├── .env.example
-├── compose.dev.yaml
-├── docs/                 项目、计划、分工、接口、技术、启动、协作与 HANDOFF；环境配置分册
-├── backend/
-│   └── requirements.txt  后端依赖候选清单
-└── frontend/
-    └── .env.example      仅公开的浏览器配置
+├── README.md / .gitignore / .gitattributes / .editorconfig
+├── .env.example / compose.dev.yaml
+├── scripts/setup-local.ps1
+├── backend/     FastAPI、Alembic、依赖与测试；后续业务模块已预留
+├── frontend/    React、Vite、TypeScript、首页与客户端检查
+├── android/     Kotlin、Compose、Gradle Wrapper 与启动首页
+└── docs/        产品、Sprint、架构、数据库、模块、配置与启动说明
 ```
 
-Android 等代码目录在对应工程建立后新增。说明文档集中于 docs；README、Git 配置、环境样例、Compose 和模块依赖留在其正常运行位置。所有文档中的终端命令，除明确切换目录外，均从仓库根目录执行。
+不提交真实环境配置、密钥、私人素材、数据库数据、node_modules、.venv、APK 和构建产物。源码许可证尚未确定；第三方库、模型和图像各自遵循原许可。项目名固定为 PuppleTrouble／玩犊紫。

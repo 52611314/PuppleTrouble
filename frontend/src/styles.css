@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+:root { font-family: "Segoe UI", "Microsoft YaHei", sans-serif; color: #302738; background: #f8f6f2; font-synthesis: none; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button:focus-visible, a:focus-visible { outline: 3px solid #b89bd3; outline-offset: 5px; }
+.shell { max-width: 1160px; margin: auto; padding: 0 48px; }
+.topbar { height: 104px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e3dce6; }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; font-size: 21px; font-weight: 700; }
+.brand-mark { background: #7550a5; color: white; display: grid; place-items: center; width: 38px; height: 38px; border-radius: 14px 14px 14px 3px; }
+.brand-en { font-size: 12px; color: #82758b; font-weight: 400; margin-left: 6px; }
+.tag { font-size: 12px; color: #82758b; }
+.hero { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; padding: 80px 0 64px; }
+.eyebrow { color: #7550a5; letter-spacing: .17em; font-size: 11px; font-weight: 700; margin: 0 0 18px; }
+h1 { font-size: clamp(32px, 4vw, 46px); font-weight: 600; line-height: 1.5; letter-spacing: -.02em; margin: 0 0 22px; }
+.intro { font-size: 14px; color: #82758b; line-height: 1.9; }
+.color-study { background: #fff; border: 1px solid #e9e2ed; border-radius: 24px; padding: 25px; box-shadow: 0 18px 48px #5945630a; }
+.study-label { display: flex; justify-content: space-between; font-size: 9px; letter-spacing: .1em; color: #82758b; }
+.color-shapes { height: 200px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; margin: 20px 0; background: #f0e9df; border-radius: 12px; }
+.color-shapes i { width: 125px; height: 125px; border-radius: 50%; background: #7550a5; margin: -16px; }
+.color-shapes i:nth-child(2) { background: #c4add9; border-radius: 2px; transform: rotate(24deg); z-index: 1; }
+.color-shapes i:nth-child(3) { background: #f0c1a4; }
+.swatches { display: flex; gap: 10px; }
+.swatches div { flex: 1; }
+.swatches span { display: block; height: 34px; border-radius: 7px; margin-bottom: 7px; }
+.swatches code { font-size: 9px; color: #82758b; }
+.color-study small { display: block; font-size: 10px; color: #9b8fa1; margin-top: 16px; }
+.connection { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 28px 32px; border: 1px solid #e3dce6; border-radius: 16px; background: #f0ebf5; }
+.connection .eyebrow { margin-bottom: 8px; }
+h2 { font-size: 19px; margin: 0 0 8px; }
+.connection p[role] { font-size: 12px; color: #82758b; margin: 0 0 12px; }
+.api-address { font-size: 11px; color: #82758b; overflow-wrap: anywhere; }
+.actions { display: flex; align-items: center; gap: 18px; flex-shrink: 0; font-size: 12px; }
+.actions button { background: #7550a5; color: #fff; padding: 12px 18px; border: none; border-radius: 9px; cursor: pointer; }
+.actions button:disabled { opacity: .55; cursor: wait; }
+.actions a { color: #7550a5; text-decoration: none; }
+footer { display: flex; justify-content: space-between; padding: 35px 0; font-size: 11px; color: #9b8fa1; }
+@media(max-width: 760px) { .shell { padding: 0 22px; } .topbar { height: 80px; } .brand-en, .tag { display: none; } .hero { grid-template-columns: 1fr; padding: 42px 0; gap: 30px; } .connection { flex-direction: column; align-items: flex-start; padding: 24px; } footer { flex-direction: column; gap: 8px; } }

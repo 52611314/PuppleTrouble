@@ -42,7 +42,7 @@ Thumbs.db
 # Private assets, database and outputs
 storage/
 uploads/
-exports/
+/exports/
 backups/
 logs/
 *.log
