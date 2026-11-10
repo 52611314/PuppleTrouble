@@ -12,7 +12,7 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=ROOT_DIR / '.env', env_file_encoding='utf-8', extra='ignore')
 
     app_env: Literal['development', 'test', 'production'] = 'development'
-    database_url: SecretStr = SecretStr('postgresql+psycopg://puppletrouble:change-local-db-password@127.0.0.1:5432/puppletrouble')
+    database_url: SecretStr = SecretStr('postgresql+psycopg://puppletrouble:change-local-db-password@127.0.0.1:5678/puppletrouble')
     jwt_secret: SecretStr = SecretStr('')
     model_api_key: SecretStr = SecretStr('')
     model_api_base_url: str = ''
